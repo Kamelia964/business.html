@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Business Presentation - Kamelia & Aya</title>
+    <style>
+        :root {
+            --gold: #ffd700;
+            --dark-bg: #0f172a;
+            --accent: #38bdf8;
+            --card-bg: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Argent qui tombe */
+        .money-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .bill {
+            position: absolute;
+            font-size: 2rem;
+            color: #4ade80;
+            animation: fall linear infinite;
+        }
+        @keyframes fall { to { transform: translateY(105vh) rotate(360deg); } }
+
+        /* Slides */
+        .slide {
+            display: none;
+            width: 80%;
+            max-width: 1000px;
+            z-index: 10;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+        }
+        .slide.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .main-title {
+            font-size: 5rem;
+            color: var(--gold);
+            animation: float 3s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Images */
+        .img-box {
+            width: 100%;
+            height: 300px;
+            border-radius: 20px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Cards pour les types */
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .type-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .type-card:hover {
+            background: var(--accent);
+            transform: scale(1.05);
+            color: #000;
+        }
+
+        /* Boutons de navigation */
+        .nav-buttons {
+            position: fixed;
+            bottom: 40px;
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+        }
+        button {
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            background: var(--gold);
+            color: #000;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        button:hover { transform: scale(1.1); background: white; }
+        button:disabled { background: #555; cursor: not-allowed; }
+
+        .steps-list { text-align: left; display: inline-block; }
+    </style>
+</head>
+<body>
+
+    <div class="money-container" id="money"></div>
+
+    <div class="slide active" id="slide-0">
+        <h1 class="main-title">How to Start a Business Online</h1>
+        <p style="font-size: 1.5rem;">Presentation by <strong>Kamelia</strong> & Aya</p>
+    </div>
+
+    <div class="slide" id="slide-1">
+        <img src="https://bizentys.com/wp-content/uploads/2025/12/opportunites-dinvestissement-2026-ou-placer-son-argent-intelligemment-1024x585.jpg" class="img-box" alt="Business">
+        <h2>What is E-Business?</h2>
+        <p style="font-size: 1.4rem; background: var(--card-bg); padding: 20px; border-radius: 15px;">
+            E-business is the integration of information and communication technologies (ICT) to streamline all business processes, from interal management to external commercial transaction. It represents the total digital transformation of a company's value chain .
+        </p>
+    </div>
+
+    <div class="slide" id="slide-2">
+        <h2>Main Types of E-Business</h2>
+        <div class="types-grid">
+            <div class="type-card" onclick="goToSlide(3)"><h3>E-Commerce</h3></div>
+            <div class="type-card" onclick="goToSlide(4)"><h3>Trading</h3></div>
+            <div class="type-card" onclick="goToSlide(5)"><h3>Freelancing</h3></div>
+            <div class="type-card" onclick="goToSlide(6)"><h3>Content Creation</h3></div>
+        </div>
+        <p style="margin-top: 20px; color: var(--accent);">Click on a card to see details!</p>
+    </div>
+
+    <div class="slide" id="slide-3">
+        <img src="https://news.radioalgerie.dz/sites/default/data/2022-09/e-commerce_algerie.jpeg" class="img-box">
+        <h2>E-Commerce</h2>
+        <ul class="steps-list">
+            <li>E-commerce or electronic commerce refers specifically to the buying and selling goods or services over the internet. It focuses on the transaction itself, covering the transfer of funds and data to execute an online sale.</li>
+        </ul>
+    </div>
+
+    <div class="slide" id="slide-4">
+        <img src="https://www.cafedutrading.com/wp-content/uploads/2022/06/comment-trader-actions-US-swing-trading.jpg" class="img-box">
+        <h2>Trading</h2>
+        <ul class="steps-list">
+            <li>Trading is the act of buying and selling financial assets such as stocks, currencies, or commodities with the goal of generating a profit from short-term or long-term price fluctuations.</li>
+        </ul>
+    </div>
+
+    <div class="slide" id="slide-5">
+        <img src="https://r2.jobbers.ma/uploads/2022/02/les-avantages-et-inconvenients-detre-freelance-jobbing-services-et-micro-services-en-freelance.jpg" class="img-box">
+        <h2>Freelancing</h2>
+        <ul class="steps-list">
+            <li>Freelancing is a professional arrangement where an individual works independently rather than being employed by a single company .</li>
+            
+        </ul>
+    </div>
+
+    <div class="slide" id="slide-6">
+        <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=800" class="img-box">
+        <h2>Content Creation</h2>
+        <ul class="steps-list">
+            <li>Content creation is the process of generating topic ideas and creating visuel or written assets. In a professional context, it is the fundamental engine of digital marketing, designed to build brand awareness, engage users, and drive conversions through storytelling and information sharing.</li>
+        </ul>
+    </div>
+<div class="slide"  id="slide-7">
+    <h2 class="main-title" style="color: var(--gold); text-align: center; font-size: 2.5rem; margin-bottom: 30px;">Steps to Start an Online Business</h2>
+    
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; padding: 10px;">
+        <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; border: 1px solid var(--gold);">
+            <h4 style="color: var(--gold); margin-top: 0;">1. Idea</h4>
+            <p style="font-size: 0.9rem; color: #ddd;">Choose a product or service you like and people need.</p>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; border: 1px solid var(--gold);">
+            <h4 style="color: var(--gold); margin-top: 0;">2. Research</h4>
+            <p style="font-size: 0.9rem; color: #ddd;">Study your customers, their needs, and your competitors.</p>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; border: 1px solid var(--gold);">
+            <h4 style="color: var(--gold); margin-top: 0;">3. Plan</h4>
+            <p style="font-size: 0.9rem; color: #ddd;">Create your roadmap: target audience, strategy, and goals.</p>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; border: 1px solid var(--gold);">
+            <h4 style="color: var(--gold); margin-top: 0;">4. Presence</h4>
+            <p style="font-size: 0.9rem; color: #ddd;">Build a website or use social media (Instagram/TikTok).</p>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; border: 1px solid var(--gold);">
+            <h4 style="color: var(--gold); margin-top: 0;">5. Marketing</h4>
+            <p style="font-size: 0.9rem; color: #ddd;">Use ads, influencers, and creative content to reach people.</p>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; border: 1px solid var(--gold);">
+            <h4 style="color: var(--gold); margin-top: 0;">6. Launch</h4>
+            <p style="font-size: 0.9rem; color: #ddd;">Start selling, communicate with customers, and improve.</p>
+        </div>
+    </div>
+</div>
+    <div class="nav-buttons">
+        <button id="prevBtn" onclick="changeSlide(-1)" disabled>Previous</button>
+        <button id="nextBtn" onclick="changeSlide(1)">Next</button>
+    </div>
+
+    <div class="slide" id="slide-7">
+        <h1 class="main-title" style="font-size: 3.5rem;">Thank You for Listening!</h1>
+        
+        <div class="section" style="background: rgba(255, 215, 0, 0.1); border: 2px dashed var(--gold); padding: 30px; border-radius: 20px; margin-top: 30px;">
+            <h2 style="color: var(--gold); margin-top: 0;">💡 Final Advice</h2>
+            <p style="font-size: 1.4rem; line-height: 1.6;">
+                "The best way to start is to **stop talking and begin doing.**" <br>
+                Don't wait for the perfect moment; start small, learn from your mistakes, and stay consistent. The digital world moves fast, so be ready to adapt!
+            </p>
+        </div>
+        
+        <p style="margin-top: 40px; font-size: 1.2rem; color: var(--accent);">
+            Presented by <strong>Kamelia</strong> & Aya
+        </p>
+    </div>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function updateButtons() {
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === slides.length - 1;
+        }
+
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide += direction;
+            slides[currentSlide].classList.add('active');
+            updateButtons();
+        }
+
+        function goToSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = index;
+            slides[currentSlide].classList.add('active');
+            updateButtons();
+        }
+
+        // Argent qui tombe
+        function createMoney() {
+            const container = document.getElementById('money');
+            const symbols = ['$', '€', '💵', '💰'];
+            for (let i = 0; i < 50; i++) {
+                const bill = document.createElement('div');
+                bill.classList.add('bill');
+                bill.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+                bill.style.left = Math.random() * 100 + 'vw';
+                bill.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                bill.style.opacity = Math.random();
+                bill.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(bill);
+            }
+        }
+        createMoney();
+    </script>
+</body>
+</html>
